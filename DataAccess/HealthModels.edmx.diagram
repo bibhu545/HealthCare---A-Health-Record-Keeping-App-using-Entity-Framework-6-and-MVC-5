@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5bc25aa623d34f29aefec0f7c2029383" Name="Diagram1">
+        <EntityTypeShape EntityType="assignmentModel.doctors" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="assignmentModel.documents" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="assignmentModel.health_users" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="assignmentModel.hospitals" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="assignmentModel.recordtypes" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="assignmentModel.speciality" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="assignmentModel.users" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="assignmentModel.FK__doctors__hospita__3F115E1A" ManuallyRouted="false" />
+        <AssociationConnector Association="assignmentModel.FK__doctors__special__40058253" ManuallyRouted="false" />
+        <AssociationConnector Association="assignmentModel.FK__documents__docto__7755B73D" ManuallyRouted="false" />
+        <AssociationConnector Association="assignmentModel.FK__documents__hospi__76619304" ManuallyRouted="false" />
+        <AssociationConnector Association="assignmentModel.FK__documents__recor__7849DB76" ManuallyRouted="false" />
+        <AssociationConnector Association="assignmentModel.FK__documents__useri__756D6ECB" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

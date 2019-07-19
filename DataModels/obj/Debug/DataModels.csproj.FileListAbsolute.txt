@@ -1,0 +1,10 @@
+D:\VisualStudio17\assignments\HealthCareMVC\DataModels\bin\Debug\DataModels.dll
+D:\VisualStudio17\assignments\HealthCareMVC\DataModels\bin\Debug\DataModels.pdb
+D:\VisualStudio17\assignments\HealthCareMVC\DataModels\obj\Debug\DataModels.csprojResolveAssemblyReference.cache
+D:\VisualStudio17\assignments\HealthCareMVC\DataModels\obj\Debug\DataModels.dll
+D:\VisualStudio17\assignments\HealthCareMVC\DataModels\obj\Debug\DataModels.pdb
+D:\VisualStudio17\assignments\HealthCareEntity\DataModels\bin\Debug\DataModels.dll
+D:\VisualStudio17\assignments\HealthCareEntity\DataModels\bin\Debug\DataModels.pdb
+D:\VisualStudio17\assignments\HealthCareEntity\DataModels\obj\Debug\DataModels.csprojResolveAssemblyReference.cache
+D:\VisualStudio17\assignments\HealthCareEntity\DataModels\obj\Debug\DataModels.dll
+D:\VisualStudio17\assignments\HealthCareEntity\DataModels\obj\Debug\DataModels.pdb

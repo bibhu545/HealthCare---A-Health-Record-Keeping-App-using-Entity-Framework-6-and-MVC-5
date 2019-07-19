@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="assignmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="doctors">
+    <Key>
+      <PropertyRef Name="doctorid" />
+    </Key>
+    <Property Name="doctorid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" Nullable="false" />
+    <Property Name="hospitalid" Type="Int32" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="speciality" Type="Int32" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isprimary" Type="Int32" />
+    <NavigationProperty Name="hospitals" Relationship="Self.FK__doctors__hospita__3F115E1A" FromRole="doctors" ToRole="hospitals" />
+    <NavigationProperty Name="speciality1" Relationship="Self.FK__doctors__special__40058253" FromRole="doctors" ToRole="speciality" />
+    <NavigationProperty Name="documents" Relationship="Self.FK__documents__docto__7755B73D" FromRole="doctors" ToRole="documents" />
+  </EntityType>
+  <EntityType Name="documents">
+    <Key>
+      <PropertyRef Name="documentid" />
+    </Key>
+    <Property Name="documentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" Nullable="false" />
+    <Property Name="hospitalid" Type="Int32" Nullable="false" />
+    <Property Name="doctorid" Type="Int32" Nullable="false" />
+    <Property Name="issuedate" Type="DateTime" Precision="3" />
+    <Property Name="recordtype" Type="Int32" Nullable="false" />
+    <Property Name="uploaddate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="filepath" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="doctors" Relationship="Self.FK__documents__docto__7755B73D" FromRole="documents" ToRole="doctors" />
+    <NavigationProperty Name="hospitals" Relationship="Self.FK__documents__hospi__76619304" FromRole="documents" ToRole="hospitals" />
+    <NavigationProperty Name="recordtypes" Relationship="Self.FK__documents__recor__7849DB76" FromRole="documents" ToRole="recordtypes" />
+    <NavigationProperty Name="health_users" Relationship="Self.FK__documents__useri__756D6ECB" FromRole="documents" ToRole="health_users" />
+  </EntityType>
+  <EntityType Name="health_users">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="profile" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="active" Type="Int32" Nullable="false" />
+    <Property Name="activationlink" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="documents" Relationship="Self.FK__documents__useri__756D6ECB" FromRole="health_users" ToRole="documents" />
+  </EntityType>
+  <EntityType Name="hospitals">
+    <Key>
+      <PropertyRef Name="hospitalid" />
+    </Key>
+    <Property Name="hospitalid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" Nullable="false" />
+    <Property Name="hospitalname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isprimary" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="doctors" Relationship="Self.FK__doctors__hospita__3F115E1A" FromRole="hospitals" ToRole="doctors" />
+    <NavigationProperty Name="documents" Relationship="Self.FK__documents__hospi__76619304" FromRole="hospitals" ToRole="documents" />
+  </EntityType>
+  <EntityType Name="recordtypes">
+    <Key>
+      <PropertyRef Name="recordid" />
+    </Key>
+    <Property Name="recordid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="recordtype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="documents" Relationship="Self.FK__documents__recor__7849DB76" FromRole="recordtypes" ToRole="documents" />
+  </EntityType>
+  <EntityType Name="speciality">
+    <Key>
+      <PropertyRef Name="specialityid" />
+    </Key>
+    <Property Name="specialityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="speciality1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="doctors" Relationship="Self.FK__doctors__special__40058253" FromRole="speciality" ToRole="doctors" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__doctors__hospita__3F115E1A">
+    <End Role="hospitals" Type="Self.hospitals" Multiplicity="1" />
+    <End Role="doctors" Type="Self.doctors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hospitals">
+        <PropertyRef Name="hospitalid" />
+      </Principal>
+      <Dependent Role="doctors">
+        <PropertyRef Name="hospitalid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__doctors__special__40058253">
+    <End Role="speciality" Type="Self.speciality" Multiplicity="1" />
+    <End Role="doctors" Type="Self.doctors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="speciality">
+        <PropertyRef Name="specialityid" />
+      </Principal>
+      <Dependent Role="doctors">
+        <PropertyRef Name="speciality" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__documents__docto__7755B73D">
+    <End Role="doctors" Type="Self.doctors" Multiplicity="1" />
+    <End Role="documents" Type="Self.documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctors">
+        <PropertyRef Name="doctorid" />
+      </Principal>
+      <Dependent Role="documents">
+        <PropertyRef Name="doctorid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__documents__hospi__76619304">
+    <End Role="hospitals" Type="Self.hospitals" Multiplicity="1" />
+    <End Role="documents" Type="Self.documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hospitals">
+        <PropertyRef Name="hospitalid" />
+      </Principal>
+      <Dependent Role="documents">
+        <PropertyRef Name="hospitalid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__documents__recor__7849DB76">
+    <End Role="recordtypes" Type="Self.recordtypes" Multiplicity="1" />
+    <End Role="documents" Type="Self.documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recordtypes">
+        <PropertyRef Name="recordid" />
+      </Principal>
+      <Dependent Role="documents">
+        <PropertyRef Name="recordtype" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__documents__useri__756D6ECB">
+    <End Role="health_users" Type="Self.health_users" Multiplicity="1" />
+    <End Role="documents" Type="Self.documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="health_users">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="documents">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ConnectionString" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="doctors" EntityType="Self.doctors" />
+    <EntitySet Name="documents" EntityType="Self.documents" />
+    <EntitySet Name="health_users" EntityType="Self.health_users" />
+    <EntitySet Name="hospitals" EntityType="Self.hospitals" />
+    <EntitySet Name="recordtypes" EntityType="Self.recordtypes" />
+    <EntitySet Name="speciality" EntityType="Self.speciality" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <AssociationSet Name="FK__doctors__hospita__3F115E1A" Association="Self.FK__doctors__hospita__3F115E1A">
+      <End Role="hospitals" EntitySet="hospitals" />
+      <End Role="doctors" EntitySet="doctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__doctors__special__40058253" Association="Self.FK__doctors__special__40058253">
+      <End Role="speciality" EntitySet="speciality" />
+      <End Role="doctors" EntitySet="doctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__documents__docto__7755B73D" Association="Self.FK__documents__docto__7755B73D">
+      <End Role="doctors" EntitySet="doctors" />
+      <End Role="documents" EntitySet="documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__documents__hospi__76619304" Association="Self.FK__documents__hospi__76619304">
+      <End Role="hospitals" EntitySet="hospitals" />
+      <End Role="documents" EntitySet="documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__documents__recor__7849DB76" Association="Self.FK__documents__recor__7849DB76">
+      <End Role="recordtypes" EntitySet="recordtypes" />
+      <End Role="documents" EntitySet="documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__documents__useri__756D6ECB" Association="Self.FK__documents__useri__756D6ECB">
+      <End Role="health_users" EntitySet="health_users" />
+      <End Role="documents" EntitySet="documents" />
+    </AssociationSet>
+    <FunctionImport Name="ActivateUser">
+      <Parameter Name="email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AddHospital">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="hospitalname" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="phone1" Mode="In" Type="String" />
+      <Parameter Name="phone2" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="isprimary" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AddNewUser">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="firstname" Mode="In" Type="String" />
+      <Parameter Name="lastname" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ChangePassword">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CreateDoctors">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="hospitalid" Mode="In" Type="Int32" />
+      <Parameter Name="firstname" Mode="In" Type="String" />
+      <Parameter Name="lastname" Mode="In" Type="String" />
+      <Parameter Name="speciality" Mode="In" Type="Int32" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="phone1" Mode="In" Type="String" />
+      <Parameter Name="phone2" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="isprimary" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CreateNewUser">
+      <Parameter Name="firstname" Mode="In" Type="String" />
+      <Parameter Name="lastname" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CreateNewUserWithCode">
+      <Parameter Name="firstname" Mode="In" Type="String" />
+      <Parameter Name="lastname" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="activationlink" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteHospital">
+      <Parameter Name="hospitalid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetDoctorDetails" ReturnType="Collection(assignmentModel.GetDoctorDetails_Result)">
+      <Parameter Name="doctorid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetDoctorDetailsV2" ReturnType="Collection(assignmentModel.GetDoctorDetailsV2_Result)">
+      <Parameter Name="doctorid" Mode="In" Type="Int32" />
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetFilesFromDB" ReturnType="Collection(assignmentModel.GetFilesFromDB_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetFilesFromDBV2" ReturnType="Collection(assignmentModel.GetFilesFromDBV2_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetFormattedFilesFromDBV2" ReturnType="Collection(assignmentModel.GetFormattedFilesFromDBV2_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="startdate" Mode="In" Type="DateTime" />
+      <Parameter Name="enddate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateDoctor">
+      <Parameter Name="doctorid" Mode="In" Type="Int32" />
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="hospitalid" Mode="In" Type="Int32" />
+      <Parameter Name="firstname" Mode="In" Type="String" />
+      <Parameter Name="lastname" Mode="In" Type="String" />
+      <Parameter Name="speciality" Mode="In" Type="Int32" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="phone1" Mode="In" Type="String" />
+      <Parameter Name="phone2" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="isprimary" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateHospital">
+      <Parameter Name="hospitalid" Mode="In" Type="Int32" />
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="hospitalname" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="phone1" Mode="In" Type="String" />
+      <Parameter Name="phone2" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="isprimary" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateUser">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="firstname" Mode="In" Type="String" />
+      <Parameter Name="lastname" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateUserDetails">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="firstname" Mode="In" Type="String" />
+      <Parameter Name="lastname" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="profile" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetAllDoctors" ReturnType="Collection(assignmentModel.GetAllDoctors_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteDocument">
+      <Parameter Name="documentid" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetDoctorDetails_Result">
+    <Property Type="Int32" Name="doctorid" Nullable="false" />
+    <Property Type="String" Name="firstname" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="lastname" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="hospitalname" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="speciality" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="address" Nullable="false" MaxLength="Max" />
+    <Property Type="String" Name="phone1" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone2" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="isprimary" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetDoctorDetailsV2_Result">
+    <Property Type="Int32" Name="doctorid" Nullable="false" />
+    <Property Type="String" Name="firstname" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="lastname" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="hospitalid" Nullable="false" />
+    <Property Type="String" Name="hospitalname" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="specialityid" Nullable="false" />
+    <Property Type="String" Name="speciality" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="address" Nullable="false" MaxLength="Max" />
+    <Property Type="String" Name="phone1" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone2" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="isprimary" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetFilesFromDB_Result">
+    <Property Type="Int32" Name="documentid" Nullable="false" />
+    <Property Type="String" Name="filepath" Nullable="false" MaxLength="512" />
+    <Property Type="DateTime" Name="issuedate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="hospitalname" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="recordid" Nullable="false" />
+    <Property Type="String" Name="recordtype" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="firstname" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="GetFilesFromDBV2_Result">
+    <Property Type="Int32" Name="documentid" Nullable="false" />
+    <Property Type="String" Name="filepath" Nullable="false" MaxLength="512" />
+    <Property Type="DateTime" Name="issuedate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="hospitalname" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="recordtype" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="firstname" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="GetFormattedFilesFromDBV2_Result">
+    <Property Type="Int32" Name="documentid" Nullable="false" />
+    <Property Type="String" Name="filepath" Nullable="false" MaxLength="512" />
+    <Property Type="DateTime" Name="issuedate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="hospitalname" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="recordid" Nullable="false" />
+    <Property Type="String" Name="recordtype" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="firstname" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="GetAllDoctors_Result">
+    <Property Type="Int32" Name="doctorid" Nullable="false" />
+    <Property Type="String" Name="firstname" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="hospitalname" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="address" Nullable="false" MaxLength="Max" />
+    <Property Type="String" Name="phone1" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="isprimary" Nullable="true" />
+  </ComplexType>
+</Schema>

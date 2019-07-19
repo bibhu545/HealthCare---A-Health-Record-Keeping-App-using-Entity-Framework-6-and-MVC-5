@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="assignmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="doctors">
+    <Key>
+      <PropertyRef Name="doctorid" />
+    </Key>
+    <Property Name="doctorid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="hospitalid" Type="int" Nullable="false" />
+    <Property Name="firstname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="lastname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="speciality" Type="int" Nullable="false" />
+    <Property Name="address" Type="text" Nullable="false" />
+    <Property Name="phone1" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone2" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="isprimary" Type="int" />
+  </EntityType>
+  <EntityType Name="documents">
+    <Key>
+      <PropertyRef Name="documentid" />
+    </Key>
+    <Property Name="documentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="hospitalid" Type="int" Nullable="false" />
+    <Property Name="doctorid" Type="int" Nullable="false" />
+    <Property Name="issuedate" Type="datetime" />
+    <Property Name="recordtype" Type="int" Nullable="false" />
+    <Property Name="uploaddate" Type="datetime" StoreGeneratedPattern="Computed" />
+    <Property Name="filepath" Type="varchar" MaxLength="512" Nullable="false" />
+  </EntityType>
+  <EntityType Name="health_users">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="lastname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="address" Type="text" />
+    <Property Name="phone" Type="varchar" MaxLength="50" />
+    <Property Name="profile" Type="varchar" MaxLength="500" />
+    <Property Name="active" Type="int" Nullable="false" />
+    <Property Name="activationlink" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="hospitals">
+    <Key>
+      <PropertyRef Name="hospitalid" />
+    </Key>
+    <Property Name="hospitalid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="hospitalname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="address" Type="text" Nullable="false" />
+    <Property Name="phone1" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="phone2" Type="varchar" MaxLength="25" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="isprimary" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="recordtypes">
+    <Key>
+      <PropertyRef Name="recordid" />
+    </Key>
+    <Property Name="recordid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="recordtype" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="speciality">
+    <Key>
+      <PropertyRef Name="specialityid" />
+    </Key>
+    <Property Name="specialityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="speciality" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="firstname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="lastname" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="address" Type="text" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__doctors__hospita__3F115E1A">
+    <End Role="hospitals" Type="Self.hospitals" Multiplicity="1" />
+    <End Role="doctors" Type="Self.doctors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hospitals">
+        <PropertyRef Name="hospitalid" />
+      </Principal>
+      <Dependent Role="doctors">
+        <PropertyRef Name="hospitalid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__doctors__special__40058253">
+    <End Role="speciality" Type="Self.speciality" Multiplicity="1" />
+    <End Role="doctors" Type="Self.doctors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="speciality">
+        <PropertyRef Name="specialityid" />
+      </Principal>
+      <Dependent Role="doctors">
+        <PropertyRef Name="speciality" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__documents__docto__7755B73D">
+    <End Role="doctors" Type="Self.doctors" Multiplicity="1" />
+    <End Role="documents" Type="Self.documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctors">
+        <PropertyRef Name="doctorid" />
+      </Principal>
+      <Dependent Role="documents">
+        <PropertyRef Name="doctorid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__documents__hospi__76619304">
+    <End Role="hospitals" Type="Self.hospitals" Multiplicity="1" />
+    <End Role="documents" Type="Self.documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hospitals">
+        <PropertyRef Name="hospitalid" />
+      </Principal>
+      <Dependent Role="documents">
+        <PropertyRef Name="hospitalid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__documents__recor__7849DB76">
+    <End Role="recordtypes" Type="Self.recordtypes" Multiplicity="1" />
+    <End Role="documents" Type="Self.documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="recordtypes">
+        <PropertyRef Name="recordid" />
+      </Principal>
+      <Dependent Role="documents">
+        <PropertyRef Name="recordtype" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__documents__useri__756D6ECB">
+    <End Role="health_users" Type="Self.health_users" Multiplicity="1" />
+    <End Role="documents" Type="Self.documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="health_users">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="documents">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="ActivateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AddHospital" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="hospitalname" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="text" Mode="In" />
+    <Parameter Name="phone1" Type="varchar" Mode="In" />
+    <Parameter Name="phone2" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="isprimary" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AddNewUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="lastname" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="text" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CreateDoctors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="hospitalid" Type="int" Mode="In" />
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="lastname" Type="varchar" Mode="In" />
+    <Parameter Name="speciality" Type="int" Mode="In" />
+    <Parameter Name="address" Type="text" Mode="In" />
+    <Parameter Name="phone1" Type="varchar" Mode="In" />
+    <Parameter Name="phone2" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="isprimary" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CreateNewUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="lastname" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CreateNewUserWithCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="lastname" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+    <Parameter Name="activationlink" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="DeleteDocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="documentid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DeleteHospital" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="hospitalid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetAllDoctors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetDoctorDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="doctorid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetDoctorDetailsV2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="doctorid" Type="int" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetFilesFromDB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetFilesFromDBV2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetFormattedFilesFromDBV2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="startdate" Type="datetime" Mode="In" />
+    <Parameter Name="enddate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UpdateDoctor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="doctorid" Type="int" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="hospitalid" Type="int" Mode="In" />
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="lastname" Type="varchar" Mode="In" />
+    <Parameter Name="speciality" Type="int" Mode="In" />
+    <Parameter Name="address" Type="text" Mode="In" />
+    <Parameter Name="phone1" Type="varchar" Mode="In" />
+    <Parameter Name="phone2" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="isprimary" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UpdateHospital" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="hospitalid" Type="int" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="hospitalname" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="text" Mode="In" />
+    <Parameter Name="phone1" Type="varchar" Mode="In" />
+    <Parameter Name="phone2" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="isprimary" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="lastname" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="text" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UpdateUserDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="lastname" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="varchar" Mode="In" />
+    <Parameter Name="profile" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="assignmentModelStoreContainer">
+    <EntitySet Name="doctors" EntityType="Self.doctors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="documents" EntityType="Self.documents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="health_users" EntityType="Self.health_users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hospitals" EntityType="Self.hospitals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="recordtypes" EntityType="Self.recordtypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="speciality" EntityType="Self.speciality" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__doctors__hospita__3F115E1A" Association="Self.FK__doctors__hospita__3F115E1A">
+      <End Role="hospitals" EntitySet="hospitals" />
+      <End Role="doctors" EntitySet="doctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__doctors__special__40058253" Association="Self.FK__doctors__special__40058253">
+      <End Role="speciality" EntitySet="speciality" />
+      <End Role="doctors" EntitySet="doctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__documents__docto__7755B73D" Association="Self.FK__documents__docto__7755B73D">
+      <End Role="doctors" EntitySet="doctors" />
+      <End Role="documents" EntitySet="documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__documents__hospi__76619304" Association="Self.FK__documents__hospi__76619304">
+      <End Role="hospitals" EntitySet="hospitals" />
+      <End Role="documents" EntitySet="documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__documents__recor__7849DB76" Association="Self.FK__documents__recor__7849DB76">
+      <End Role="recordtypes" EntitySet="recordtypes" />
+      <End Role="documents" EntitySet="documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__documents__useri__756D6ECB" Association="Self.FK__documents__useri__756D6ECB">
+      <End Role="health_users" EntitySet="health_users" />
+      <End Role="documents" EntitySet="documents" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

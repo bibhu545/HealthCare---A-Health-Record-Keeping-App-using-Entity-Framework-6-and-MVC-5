@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="assignmentModelStoreContainer" CdmEntityContainer="ConnectionString">
+    <EntitySetMapping Name="doctors">
+      <EntityTypeMapping TypeName="assignmentModel.doctors">
+        <MappingFragment StoreEntitySet="doctors">
+          <ScalarProperty Name="doctorid" ColumnName="doctorid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="hospitalid" ColumnName="hospitalid" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="speciality" ColumnName="speciality" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone1" ColumnName="phone1" />
+          <ScalarProperty Name="phone2" ColumnName="phone2" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="isprimary" ColumnName="isprimary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="documents">
+      <EntityTypeMapping TypeName="assignmentModel.documents">
+        <MappingFragment StoreEntitySet="documents">
+          <ScalarProperty Name="documentid" ColumnName="documentid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="hospitalid" ColumnName="hospitalid" />
+          <ScalarProperty Name="doctorid" ColumnName="doctorid" />
+          <ScalarProperty Name="issuedate" ColumnName="issuedate" />
+          <ScalarProperty Name="recordtype" ColumnName="recordtype" />
+          <ScalarProperty Name="uploaddate" ColumnName="uploaddate" />
+          <ScalarProperty Name="filepath" ColumnName="filepath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="health_users">
+      <EntityTypeMapping TypeName="assignmentModel.health_users">
+        <MappingFragment StoreEntitySet="health_users">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="profile" ColumnName="profile" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="activationlink" ColumnName="activationlink" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hospitals">
+      <EntityTypeMapping TypeName="assignmentModel.hospitals">
+        <MappingFragment StoreEntitySet="hospitals">
+          <ScalarProperty Name="hospitalid" ColumnName="hospitalid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="hospitalname" ColumnName="hospitalname" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone1" ColumnName="phone1" />
+          <ScalarProperty Name="phone2" ColumnName="phone2" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="isprimary" ColumnName="isprimary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="recordtypes">
+      <EntityTypeMapping TypeName="assignmentModel.recordtypes">
+        <MappingFragment StoreEntitySet="recordtypes">
+          <ScalarProperty Name="recordid" ColumnName="recordid" />
+          <ScalarProperty Name="recordtype" ColumnName="recordtype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="speciality">
+      <EntityTypeMapping TypeName="assignmentModel.speciality">
+        <MappingFragment StoreEntitySet="speciality">
+          <ScalarProperty Name="specialityid" ColumnName="specialityid" />
+          <ScalarProperty Name="speciality1" ColumnName="speciality" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="assignmentModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ActivateUser" FunctionName="assignmentModel.Store.ActivateUser" />
+    <FunctionImportMapping FunctionImportName="AddHospital" FunctionName="assignmentModel.Store.AddHospital" />
+    <FunctionImportMapping FunctionImportName="AddNewUser" FunctionName="assignmentModel.Store.AddNewUser" />
+    <FunctionImportMapping FunctionImportName="ChangePassword" FunctionName="assignmentModel.Store.ChangePassword" />
+    <FunctionImportMapping FunctionImportName="CreateDoctors" FunctionName="assignmentModel.Store.CreateDoctors" />
+    <FunctionImportMapping FunctionImportName="CreateNewUser" FunctionName="assignmentModel.Store.CreateNewUser" />
+    <FunctionImportMapping FunctionImportName="CreateNewUserWithCode" FunctionName="assignmentModel.Store.CreateNewUserWithCode" />
+    <FunctionImportMapping FunctionImportName="DeleteHospital" FunctionName="assignmentModel.Store.DeleteHospital" />
+    <FunctionImportMapping FunctionImportName="GetDoctorDetails" FunctionName="assignmentModel.Store.GetDoctorDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="assignmentModel.GetDoctorDetails_Result">
+          <ScalarProperty Name="doctorid" ColumnName="doctorid" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="hospitalname" ColumnName="hospitalname" />
+          <ScalarProperty Name="speciality" ColumnName="speciality" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone1" ColumnName="phone1" />
+          <ScalarProperty Name="phone2" ColumnName="phone2" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="isprimary" ColumnName="isprimary" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDoctorDetailsV2" FunctionName="assignmentModel.Store.GetDoctorDetailsV2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="assignmentModel.GetDoctorDetailsV2_Result">
+          <ScalarProperty Name="doctorid" ColumnName="doctorid" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="hospitalid" ColumnName="hospitalid" />
+          <ScalarProperty Name="hospitalname" ColumnName="hospitalname" />
+          <ScalarProperty Name="specialityid" ColumnName="specialityid" />
+          <ScalarProperty Name="speciality" ColumnName="speciality" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone1" ColumnName="phone1" />
+          <ScalarProperty Name="phone2" ColumnName="phone2" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="isprimary" ColumnName="isprimary" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetFilesFromDB" FunctionName="assignmentModel.Store.GetFilesFromDB">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="assignmentModel.GetFilesFromDB_Result">
+          <ScalarProperty Name="documentid" ColumnName="documentid" />
+          <ScalarProperty Name="filepath" ColumnName="filepath" />
+          <ScalarProperty Name="issuedate" ColumnName="issuedate" />
+          <ScalarProperty Name="hospitalname" ColumnName="hospitalname" />
+          <ScalarProperty Name="recordid" ColumnName="recordid" />
+          <ScalarProperty Name="recordtype" ColumnName="recordtype" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetFilesFromDBV2" FunctionName="assignmentModel.Store.GetFilesFromDBV2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="assignmentModel.GetFilesFromDBV2_Result">
+          <ScalarProperty Name="documentid" ColumnName="documentid" />
+          <ScalarProperty Name="filepath" ColumnName="filepath" />
+          <ScalarProperty Name="issuedate" ColumnName="issuedate" />
+          <ScalarProperty Name="hospitalname" ColumnName="hospitalname" />
+          <ScalarProperty Name="recordtype" ColumnName="recordtype" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetFormattedFilesFromDBV2" FunctionName="assignmentModel.Store.GetFormattedFilesFromDBV2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="assignmentModel.GetFormattedFilesFromDBV2_Result">
+          <ScalarProperty Name="documentid" ColumnName="documentid" />
+          <ScalarProperty Name="filepath" ColumnName="filepath" />
+          <ScalarProperty Name="issuedate" ColumnName="issuedate" />
+          <ScalarProperty Name="hospitalname" ColumnName="hospitalname" />
+          <ScalarProperty Name="recordid" ColumnName="recordid" />
+          <ScalarProperty Name="recordtype" ColumnName="recordtype" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdateDoctor" FunctionName="assignmentModel.Store.UpdateDoctor" />
+    <FunctionImportMapping FunctionImportName="UpdateHospital" FunctionName="assignmentModel.Store.UpdateHospital" />
+    <FunctionImportMapping FunctionImportName="UpdateUser" FunctionName="assignmentModel.Store.UpdateUser" />
+    <FunctionImportMapping FunctionImportName="UpdateUserDetails" FunctionName="assignmentModel.Store.UpdateUserDetails" />
+    <FunctionImportMapping FunctionImportName="GetAllDoctors" FunctionName="assignmentModel.Store.GetAllDoctors">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="assignmentModel.GetAllDoctors_Result">
+          <ScalarProperty Name="doctorid" ColumnName="doctorid" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="hospitalname" ColumnName="hospitalname" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone1" ColumnName="phone1" />
+          <ScalarProperty Name="isprimary" ColumnName="isprimary" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DeleteDocument" FunctionName="assignmentModel.Store.DeleteDocument" />
+  </EntityContainerMapping>
+</Mapping>

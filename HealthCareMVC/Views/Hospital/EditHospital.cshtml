@@ -1,0 +1,67 @@
+﻿@model DataModels.Hospital
+
+@{
+    ViewBag.Title = "EditHospital";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderSection
+{
+    <style>
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <center>
+            <h3>Edit Hospital Details</h3>
+        </center>
+        <br />
+
+        <div class="table-responsive">
+            @using (Html.BeginForm("EditHospitalRequest", "Hospital"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.HospitalId)
+                <table class="table table-hover">
+                    <tr>
+                        <th>Hospital Name: </th>
+                        <td>
+                            @Html.EditorFor(model => model.HospitalName, new{ htmlAttributes = new { Class = "form-control" } })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Address: </th>
+                        <td>@Html.EditorFor(model => model.Address, new { htmlAttributes = new { Class = "form-control" } })</td>
+                    </tr>
+                    <tr>
+                        <th>Contact Number: </th>
+                        <td>@Html.EditorFor(model => model.Phone1, new { htmlAttributes = new { Class = "form-control" } })</td>
+                    </tr>
+                    <tr>
+                        <th>Alternative Number: </th>
+                        <td>@Html.EditorFor(model => model.Phone2, new { htmlAttributes = new { Class = "form-control" } })</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>@Html.EditorFor(model => model.Email, new { htmlAttributes = new { Class = "form-control" } })</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <label class="checkbox-inline">@Html.EditorFor(x => x.SetPrimary) Set Primary</label>
+                        </th>
+                    </tr>
+                </table>
+                <center>
+                    <input type="submit" class="btn btn-primary" value="Save Details"/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/ViewHospitalDetails?id=@Model.HospitalId" class="btn btn-default">Cancel</a>
+                </center>
+            }
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
