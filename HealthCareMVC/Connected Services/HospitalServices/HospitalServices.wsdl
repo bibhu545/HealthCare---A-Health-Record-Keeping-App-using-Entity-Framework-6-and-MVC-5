@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="HospitalServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://desktop-v94fr8u/HealthWCF/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://desktop-v94fr8u/HealthWCF/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://desktop-v94fr8u/HealthWCF/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataModels" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IHospitalServices_GetAllHospitals_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllHospitals" />
+  </wsdl:message>
+  <wsdl:message name="IHospitalServices_GetAllHospitals_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllHospitalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHospitalServices_GetHospitals_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHospitals" />
+  </wsdl:message>
+  <wsdl:message name="IHospitalServices_GetHospitals_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHospitalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHospitalServices_GetHospitalDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHospitalDetails" />
+  </wsdl:message>
+  <wsdl:message name="IHospitalServices_GetHospitalDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHospitalDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHospitalServices_AddHospital_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddHospital" />
+  </wsdl:message>
+  <wsdl:message name="IHospitalServices_AddHospital_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddHospitalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHospitalServices_UpdateHospital_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHospital" />
+  </wsdl:message>
+  <wsdl:message name="IHospitalServices_UpdateHospital_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHospitalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IHospitalServices_DeleteHospital_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteHospital" />
+  </wsdl:message>
+  <wsdl:message name="IHospitalServices_DeleteHospital_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteHospitalResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IHospitalServices">
+    <wsdl:operation name="GetAllHospitals">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHospitalServices/GetAllHospitals" message="tns:IHospitalServices_GetAllHospitals_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHospitalServices/GetAllHospitalsResponse" message="tns:IHospitalServices_GetAllHospitals_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHospitals">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHospitalServices/GetHospitals" message="tns:IHospitalServices_GetHospitals_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHospitalServices/GetHospitalsResponse" message="tns:IHospitalServices_GetHospitals_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHospitalDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHospitalServices/GetHospitalDetails" message="tns:IHospitalServices_GetHospitalDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHospitalServices/GetHospitalDetailsResponse" message="tns:IHospitalServices_GetHospitalDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddHospital">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHospitalServices/AddHospital" message="tns:IHospitalServices_AddHospital_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHospitalServices/AddHospitalResponse" message="tns:IHospitalServices_AddHospital_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateHospital">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHospitalServices/UpdateHospital" message="tns:IHospitalServices_UpdateHospital_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHospitalServices/UpdateHospitalResponse" message="tns:IHospitalServices_UpdateHospital_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHospital">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHospitalServices/DeleteHospital" message="tns:IHospitalServices_DeleteHospital_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHospitalServices/DeleteHospitalResponse" message="tns:IHospitalServices_DeleteHospital_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IHospitalServices" type="tns:IHospitalServices">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllHospitals">
+      <soap:operation soapAction="http://tempuri.org/IHospitalServices/GetAllHospitals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHospitals">
+      <soap:operation soapAction="http://tempuri.org/IHospitalServices/GetHospitals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHospitalDetails">
+      <soap:operation soapAction="http://tempuri.org/IHospitalServices/GetHospitalDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHospital">
+      <soap:operation soapAction="http://tempuri.org/IHospitalServices/AddHospital" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateHospital">
+      <soap:operation soapAction="http://tempuri.org/IHospitalServices/UpdateHospital" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHospital">
+      <soap:operation soapAction="http://tempuri.org/IHospitalServices/DeleteHospital" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HospitalServices">
+    <wsdl:port name="BasicHttpBinding_IHospitalServices" binding="tns:BasicHttpBinding_IHospitalServices">
+      <soap:address location="http://desktop-v94fr8u/HealthWCF/Service.svc/HospitalService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

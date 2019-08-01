@@ -3,3 +3,8 @@ D:\VisualStudio17\assignments\HealthCareMVC\LogsAndError\bin\Debug\LogsAndError.
 D:\VisualStudio17\assignments\HealthCareMVC\LogsAndError\obj\Debug\LogsAndError.csprojResolveAssemblyReference.cache
 D:\VisualStudio17\assignments\HealthCareMVC\LogsAndError\obj\Debug\LogsAndError.dll
 D:\VisualStudio17\assignments\HealthCareMVC\LogsAndError\obj\Debug\LogsAndError.pdb
+D:\VisualStudio17\assignments\HealthCareEntity\LogsAndError\bin\Debug\LogsAndError.dll
+D:\VisualStudio17\assignments\HealthCareEntity\LogsAndError\bin\Debug\LogsAndError.pdb
+D:\VisualStudio17\assignments\HealthCareEntity\LogsAndError\obj\Debug\LogsAndError.csprojResolveAssemblyReference.cache
+D:\VisualStudio17\assignments\HealthCareEntity\LogsAndError\obj\Debug\LogsAndError.dll
+D:\VisualStudio17\assignments\HealthCareEntity\LogsAndError\obj\Debug\LogsAndError.pdb

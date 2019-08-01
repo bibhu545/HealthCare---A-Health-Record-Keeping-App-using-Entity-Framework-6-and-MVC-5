@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DataModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DataModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfHospital">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Hospital" nillable="true" type="tns:Hospital" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHospital" nillable="true" type="tns:ArrayOfHospital" />
+  <xs:complexType name="Hospital">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HospitalId" type="xs:int" />
+      <xs:element minOccurs="0" name="HospitalName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsPrimary" type="xs:int" />
+      <xs:element minOccurs="0" name="Phone1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+      <xs:element minOccurs="0" name="status" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Hospital" nillable="true" type="tns:Hospital" />
+</xs:schema>

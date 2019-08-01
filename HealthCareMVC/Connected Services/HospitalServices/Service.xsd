@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://desktop-v94fr8u/HealthWCF/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataModels" />
+  <xs:element name="GetAllHospitals">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllHospitalsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataModels" minOccurs="0" name="GetAllHospitalsResult" nillable="true" type="q1:ArrayOfHospital" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHospitals">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHospitalsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataModels" minOccurs="0" name="GetHospitalsResult" nillable="true" type="q2:ArrayOfHospital" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHospitalDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userid" type="xs:int" />
+        <xs:element minOccurs="0" name="hospitalid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHospitalDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataModels" minOccurs="0" name="GetHospitalDetailsResult" nillable="true" type="q3:Hospital" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddHospital">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DataModels" minOccurs="0" name="hospital" nillable="true" type="q4:Hospital" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddHospitalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddHospitalResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateHospital">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DataModels" minOccurs="0" name="hospital" nillable="true" type="q5:Hospital" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateHospitalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateHospitalResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteHospital">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userid" type="xs:int" />
+        <xs:element minOccurs="0" name="hospitalid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteHospitalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteHospitalResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

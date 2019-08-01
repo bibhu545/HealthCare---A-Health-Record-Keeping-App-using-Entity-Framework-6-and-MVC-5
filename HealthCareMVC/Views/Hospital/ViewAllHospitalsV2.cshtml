@@ -1,0 +1,346 @@
+﻿@using DataModels;
+@{
+    ViewBag.Title = "ViewAllHospitalsV2";
+    var userid = ((User)Session["loggedUser"]).UserId;
+}
+
+@section HeaderSection
+{
+    <style>
+        .content-pane {
+            padding-top: 8%;
+        }
+
+        .delete-link {
+            color: red;
+        }
+        .action{
+            text-align: center;
+        }
+        #primaryHospital{
+            color: green;
+        }
+    </style>
+}
+
+<center>
+    <h3>All Hospitals</h3>
+    <button class="btn btn-primary add-new" data-toggle='modal' data-target='#Modal'>Add New Hospital</button>
+</center>
+<br />
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Contact Number</th>
+                <th>Alternative Number</th>
+                <th colspan="3" class="action">Action</th>
+            </tr>
+        </thead>
+        <tbody id="tblHospitals"></tbody>
+    </table>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div id="Modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <center>
+                            <h4 class="modal-title">Hospital Details</h4>
+                            <span id="primaryHospital"></span>
+                        </center>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="txtHospitalId" />
+                        <table class="table">
+                            <tr>
+                                <th>Hospital Name:</th>
+                                <td>
+                                    <span id="spnHospitalName"></span>
+                                    <input type="text" id="txtHospitalName" class="form-control" placeholder="Enter Hospital Name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Email:</th>
+                                <td>
+                                    <span id="spnEmail"></span>
+                                    <input type="email" id="txtEmail" class="form-control" placeholder="Enter Hospital Email" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Address:</th>
+                                <td>
+                                    <span id="spnAddress"></span>
+                                    <input type="text" id="txtAddress" class="form-control" placeholder="Enter Address" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Contact Number:</th>
+                                <td>
+                                    <span id="spnContactNumber"></span>
+                                    <input type="text" id="txtContactNumber" class="form-control" placeholder="Enter Contact Number" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Alternative Number:</th>
+                                <td>
+                                    <span id="spnAlternativeNumber"></span>
+                                    <input type="text" id="txtAlternativeNumber" class="form-control" placeholder="Enter Alternative Number" />
+                                </td>
+                            </tr>
+                            <tr id="primaryRow">
+                                <th>
+                                    <label class="checkbox-inline"><input type="checkbox" id="chkSetPrimary" /> Set Primary</label>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="btnEditHospital" data-dismiss="modal">Save Changes</button>
+                        <button class="btn btn-primary" id="btnAddNewHospital" data-dismiss="modal">Add Now</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+@section FooterSection
+{
+    <script>
+        $(document).ready(function () {
+
+            var userid = @userid;
+            $.ajax({
+                type: 'GET',
+                url: 'http://www.healthapi.com/api/hospital/' + userid,
+                dataType: 'json',
+                success: function (data) {
+                    $("#tblHospitals").empty();
+                    $.each(data, function (index, value) {
+                        $("#tblHospitals").append(
+                            "<tr>" +
+                            "<td>" + value.hospitalid + "</td>" +
+                            "<td>" + value.hospitalname + "</td>" +
+                            "<td>" + value.email + "</td>" +
+                            "<td>" + value.address + "</td>" +
+                            "<td>" + value.phone1 + "</td>" +
+                            "<td>" + value.phone2 + "</td>" +
+                            "<td><a href='#' class='view-link' data-toggle='modal' data-target='#Modal'>View</a></td>" +
+                            "<td><a href='#' class='edit-link' data-toggle='modal' data-target='#Modal'>Edit</a></td>" +
+                            "<td><a href='#' class='delete-link'>Delete</a>" +
+                            "</tr>"
+                        );
+                    });
+                },
+                error: function (err) {
+                    alert("Some error occured. " + err.statusText);
+                }
+            });
+
+            $("body").on("click", ".view-link", function () {
+                $("#txtHospitalName").hide();
+                $("#txtEmail").hide();
+                $("#txtAddress").hide();
+                $("#txtContactNumber").hide();
+                $("#txtAlternativeNumber").hide();
+                $("#primaryRow").hide();
+                $("#btnAddNewHospital").hide();
+                $("#btnEditHospital").hide();
+
+                $('#primaryHospital').show();
+                $("#spnHospitalName").show();
+                $("#spnEmail").show();
+                $("#spnAddress").show();
+                $("#spnContactNumber").show();
+                $("#spnAlternativeNumber").show();
+
+                var id = $(this).closest('tr').find('td:eq(0)').text();
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://www.healthapi.com/api/hospital?userid=' + userid +'&hospitalid=' + id,
+                    dataType: 'json',
+                    success: function (data) {
+                        $("#spnHospitalName").text(data.hospitalname);
+                        $("#spnEmail").text(data.email);
+                        $("#spnAddress").text(data.address);
+                        $("#spnContactNumber").text(data.phone1);
+                        $("#spnAlternativeNumber").text(data.phone2);
+                        if (data.isprimary == 1) {
+                            $('#primaryHospital').text("(Primary Hospital)");
+                        }
+                    },
+                    error: function (err) {
+                        alert("Some error occured. " + err.statusText);
+                    }
+                });
+            });
+
+            $("body").on("click", ".edit-link", function () {
+                $("#txtHospitalName").show();
+                $("#txtEmail").show();
+                $("#txtAddress").show();
+                $("#txtContactNumber").show();
+                $("#txtAlternativeNumber").show();
+                $("#primaryRow").show();
+                $("#btnEditHospital").show();
+                $('#chkSetPrimary').prop('checked', false);
+
+                $('#primaryHospital').hide();
+                $("#spnHospitalName").hide();
+                $("#spnEmail").hide();
+                $("#spnAddress").hide();
+                $("#spnContactNumber").hide();
+                $("#spnAlternativeNumber").hide();
+                $("#btnAddNewHospital").hide();
+
+                var id = $(this).closest('tr').find('td:eq(0)').text();
+                $("#txtHospitalId").val(id);
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://www.healthapi.com/api/hospital?userid=' + userid + '&hospitalid=' + id,
+                    dataType: 'json',
+                    success: function (data) {
+                        
+                        $("#txtHospitalName").val(data.hospitalname);
+                        $("#txtEmail").val(data.email);
+                        $("#txtAddress").val(data.address);
+                        $("#txtContactNumber").val(data.phone1);
+                        $("#txtAlternativeNumber").val(data.phone2);
+                        if (data.isprimary == 1) {
+                            $('#chkSetPrimary').prop('checked', true);
+                        }
+                    },
+                    error: function (err) {
+                        alert("Some error occured. " + err.statusText);
+                    }
+                });
+            });
+
+            $("body").on("click", ".add-new", function () {
+                $("#txtHospitalName").show();
+                $("#txtEmail").show();
+                $("#txtAddress").show();
+                $("#txtContactNumber").show();
+                $("#txtAlternativeNumber").show();
+                $("#btnAddNewHospital").show();
+
+                $("#txtHospitalName").val("");
+                $("#txtEmail").val("");
+                $("#txtAddress").val("");
+                $("#txtContactNumber").val("");
+                $("#txtAlternativeNumber").val("");
+
+                $("#primaryRow").show();
+                $('#chkSetPrimary').prop('checked', false);
+
+                $("#btnEditHospital").hide();
+                $('#primaryHospital').hide();
+                $("#spnHospitalName").hide();
+                $("#spnEmail").hide();
+                $("#spnAddress").hide();
+                $("#spnContactNumber").hide();
+                $("#spnAlternativeNumber").hide();
+            });
+
+            $("body").on("click", "#btnAddNewHospital", function () {
+
+                var isPrimary = 0;
+                if ($("#chkSetPrimary").prop("checked") == true) {
+                    isPrimary = 1;
+                }
+
+                $.ajax({
+                    url: 'http://www.healthapi.com/api/hospital',
+                    type: 'post',
+                    data: {
+                            userid: userid,
+                            hospitalname: $("#txtHospitalName").val(),
+                            address: $("#txtAddress").val(),
+                            phone1: $("#txtContactNumber").val(),
+                            phone2: $("#txtAlternativeNumber").val(),
+                            email: $("#txtEmail").val(),
+                            isprimary: isPrimary
+                    },
+                    success: function (data) {
+                        alert("Successfully added a new Doctor.");
+                        location.reload();
+                    },
+                    error: function (err) {
+                        alert("Some error occured. Please try again.");
+                    }
+                });
+
+            });
+
+            $("body").on("click", "#btnEditHospital", function () {
+                var isPrimary = 0;
+                if ($("#chkSetPrimary").prop("checked") == true) {
+                    isPrimary = 1;
+                }
+
+                $.ajax({
+                    url: 'http://www.healthapi.com/api/hospital',
+                    type: 'put',
+                    data: {
+                        hospitalid: $("#txtHospitalId").val(),
+                        userid: userid,
+                        hospitalname: $("#txtHospitalName").val(),
+                        address: $("#txtAddress").val(),
+                        phone1: $("#txtContactNumber").val(),
+                        phone2: $("#txtAlternativeNumber").val(),
+                        email: $("#txtEmail").val(),
+                        isprimary: isPrimary
+                    },
+                    success: function (data) {
+                        alert("Successfully updated hospital details.");
+                        location.reload();
+                    },
+                    error: function (err) {
+                        console.log(err);
+                        alert("Some error occured. Please try again.");
+                    }
+                });
+            });
+
+            $("body").on("click", ".delete-link", function () {
+                if (!window.confirm("Deleting a Hospital will delete all doctors and all documents associated with it. Are you sure? "))
+                {
+                    e.preventDefault();
+                }
+                else
+                {
+                    var hospitalid = $(this).closest('tr').find('td:eq(0)').text();
+                    $.ajax({
+                        url: 'http://www.healthapi.com/api/hospital?userid=' + userid + '&hospitalid=' + hospitalid,
+                        type: 'delete',
+                        success: function (data) {
+                            alert("Hospital deleted.");
+                            location.reload();
+                        },
+                        error: function (err) {
+                            console.log(err);
+                            alert("Some error occured. Please try again.");
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
+}
+

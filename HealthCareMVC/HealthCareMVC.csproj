@@ -56,6 +56,8 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -97,6 +99,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\HospitalServices\configuration91.svcinfo" />
+    <None Include="Connected Services\HospitalServices\configuration.svcinfo" />
+    <None Include="Connected Services\HospitalServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Contents\css\bootstrap-theme.css" />
     <Content Include="Contents\css\bootstrap-theme.min.css" />
     <Content Include="Contents\css\bootstrap.css" />
@@ -123,6 +131,17 @@
     <Content Include="Contents\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Contents\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Contents\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Properties\DataSources\DataModels.Hospital.datasource" />
+    <None Include="Connected Services\HospitalServices\HospitalServices.wsdl" />
+    <None Include="Connected Services\HospitalServices\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\HospitalServices\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\HospitalServices\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -147,6 +166,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Connected Services\HospitalServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HospitalController.cs" />
@@ -185,6 +209,10 @@
     <Content Include="Views\Vault\AddNewDocument.cshtml" />
     <Content Include="Views\Doctor\ViewAllDoctorsV2.cshtml" />
     <Content Include="Views\Hospital\AddNewHospitalV2.cshtml" />
+    <Content Include="Views\Hospital\ViewAllHospitalsV2.cshtml" />
+    <Content Include="Views\Hospital\ViewAllHospitalsWCF.cshtml" />
+    <Content Include="Views\Hospital\ViewHospitalV3.cshtml" />
+    <Content Include="Views\Hospital\EditHospitalV3.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -210,6 +238,12 @@
       <Project>{d86974df-0a2c-4e93-a658-fa45324fa6ab}</Project>
       <Name>LogsAndError</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\HospitalServices\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
